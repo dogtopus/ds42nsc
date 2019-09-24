@@ -1,0 +1,7 @@
+.pio
+
+# Generated Eclipse project files
+.cproject
+.project
+.settings
+.settings/*
