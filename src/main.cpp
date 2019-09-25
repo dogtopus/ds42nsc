@@ -1,3 +1,12 @@
+// SPDX-License-Identifier: Unlicense
+/* ========================================
+ *
+ * "Copyright" dogtopus, 2019
+ * Released to public domain
+ *
+ * ========================================
+*/
+
 #include <Arduino.h>
 #include <EventResponder.h>
 
