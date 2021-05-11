@@ -4,7 +4,7 @@ This is an one-hour side project after I saw this [PR by earboxer][pr]. It plays
 
 ## Hardware
 
-- Teensy 3.x/LC
+- Teensy 3.x/LC (mostly tested on LC)
 - USB Host Shield (mini is preferred)
   - Refer to the [UHS library GitHub][uhs] for wiring.
 
@@ -15,15 +15,18 @@ This is an one-hour side project after I saw this [PR by earboxer][pr]. It plays
 0. Go to the release section and download the 2 zip files (contains the prepatched teensyduino library)
 1. Unzip `framework-arduinoteensy-ns_1.145.0.zip` and put contents under `~/.platformio/packages`.
 2. Unzip `teensy-ns_4.3.0.zip` and put contents under `~/.platformio/platforms`.
-3. Run `platformio run` and hopefully nothing will break.
+3. Run `platformio run` (or `platformio run -e teensylc-mega69`) and hopefully nothing will break.
 
-### Teensyduino
+(For Teensy 3.x, use `-e teensy{31,35,36}[-mega69]` instead)
+
+### Teensyduino (not tested)
 
 0. Follow the instruction in the [original PR][pr]
-1. Download and install USB Host Shield Library.
+1. Download and install USB Host Shield Library (and SPI4Teensy3 if you are building for 3.x).
 2. Make a directory called `ds42nsc` somewhere.
 3. Copy `src/main.cpp` to `ds42nsc` and rename it `ds42nsc.ino`.
-4. Open it with Arduino IDE and hit upload (and hopefully nothing will break as well).
+4. Add `#define MEGA69` at the beginning of `ds42nsc.ino` to enable MEGA69 mode.
+5. Open it with Arduino IDE and hit upload (and hopefully nothing will break as well).
 
 ## Usage
 

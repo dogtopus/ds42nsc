@@ -20,9 +20,24 @@ PS4USB DS4(&USBH);
 EventResponder USBHTaskEvent;
 MillisTimer USBHTaskTimer;
 
+#ifndef MEGA69
 // Switch assumes the controller would do calibration, so we'll "do it"
 const uint8_t stick_centroid = 128;
 const uint8_t stick_deadzone_radius = 10;
+
+static uint8_t apply_dead_zone(uint8_t orig) {
+    if (orig < stick_centroid - stick_deadzone_radius or orig > stick_centroid + stick_deadzone_radius) {
+        return orig;
+    } else {
+        return stick_centroid;
+    }
+}
+#else
+// No deadzone for MEGA69 controller
+static inline uint8_t apply_dead_zone(uint8_t orig) {
+    return orig;
+}
+#endif
 
 void setup() {
     Joystick.begin();
@@ -38,14 +53,6 @@ void setup() {
     });
     // USBH is polled every 1ms
     USBHTaskTimer.beginRepeating(1, USBHTaskEvent);
-}
-
-uint8_t apply_dead_zone(uint8_t orig) {
-    if (orig < stick_centroid - stick_deadzone_radius or orig > stick_centroid + stick_deadzone_radius) {
-        return orig;
-    } else {
-        return stick_centroid;
-    }
 }
 
 void loop() {
